@@ -1,0 +1,21 @@
+service: plugin-test
+frameworkVersion: "2"
+
+plugins:
+  - serverless-plugin-aws-cicd
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-west-2
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  cicd:
+    gitOwner: quickliketurtle
+    githubtoken: changeme
+
+functions:
+  hello:
+    handler: handler.hello
